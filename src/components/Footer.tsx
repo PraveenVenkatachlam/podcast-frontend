@@ -5,7 +5,7 @@ export default function Footer() {
 
         {/* Logo + Buttons */}
         <div className="col-span-2 flex flex-col items-center md:items-start">
-          <h1 className="text-4xl font-bold mb-6">Stream Studio</h1>
+          <h1 className="text-4xl font-bold mb-6">Podcast Studio</h1>
 
           <div className="flex gap-4 mb-6">
             <button className="bg-[#1e6262] px-6 py-3 rounded-full font-semibold hover:opacity-80">

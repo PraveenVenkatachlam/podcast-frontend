@@ -13,7 +13,7 @@ export default function HeroVideo() {
         
         {/* Left – Logo */}
         <Link href="/">
-          <h1 className="text-white text-xl sm:text-2xl font-bold">Stream Studio</h1>
+          <h1 className="text-white text-xl sm:text-2xl font-bold">Podcast Studio</h1>
         </Link>
 
         {/* Center menu - Desktop */}

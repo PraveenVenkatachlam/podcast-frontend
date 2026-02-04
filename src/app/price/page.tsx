@@ -10,7 +10,7 @@ export default function PricingPage() {
         {/* Left – Logo */}
         <Link href="/">
           <h1 className="text-gray-900 text-2xl font-bold cursor-pointer">
-            Stream Studio
+            Podcast Studio
           </h1>
         </Link>
 

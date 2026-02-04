@@ -8,14 +8,56 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleGoogleLogin = () => {
-    console.log("Google login clicked");
+  // const handleGoogleLogin = () => {
+  //   console.log("Google login clicked");
+  // };
+
+  // const handleEmailLogin = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   console.log("Email login:", email, password);
+  // };
+    const handleEmailLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    console.log("Email login:", email, password);
+
+    try {
+     
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
+      //  const res = await fetch("http://localhost:5001/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+console.log(data);
+console.log(process.env.REACT_APP_BACKEND_URL);  // should print http://localhost:5001
+      if (res.ok) {
+        console.log("Login success:", data);
+        alert("Login successful!");
+        // TODO: store JWT token in localStorage or cookie
+      } else {
+        console.error("Login failed:", data.message || data);
+        alert(`Error: ${data.message || "Login failed"}`);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("Network error. Please try again.");
+    }
+
+    setLoading(false);
   };
 
-  const handleEmailLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Email login:", email, password);
+  // Google login
+  const handleGoogleLogin = () => {
+    console.log("Google login clicked");
+    // TODO: redirect to your backend Google OAuth endpoint
+    window.location.href = `${process.env.REACT_APP_BACKEND_URL}/ap/auth/google`;
   };
 
   return (
@@ -24,7 +66,7 @@ export default function LoginPage() {
       <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4 bg-white border-b border-gray-200">
         <Link href="/">
           <h1 className="text-gray-900 text-xl sm:text-2xl font-bold cursor-pointer">
-            Stream Studio
+            Podcast Studio
           </h1>
         </Link>
 
@@ -232,7 +274,7 @@ export default function LoginPage() {
 
           {/* Terms */}
           <p className="text-center text-gray-400 text-xs sm:text-sm mt-6 px-4">
-            By continuing, you agree to Stream Studio's{" "}
+            By continuing, you agree to Podcast Studio's{" "}
             <Link href="/terms" className="underline hover:text-gray-600">
               Terms of Service
             </Link>{" "}

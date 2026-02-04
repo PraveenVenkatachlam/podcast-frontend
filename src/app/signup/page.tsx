@@ -14,10 +14,43 @@ export default function SignUpPage() {
     console.log("Google sign up clicked");
   };
 
-  const handleEmailSignUp = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Email sign up:", name, email, password);
-  };
+  // const handleEmailSignUp = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   console.log("Email sign up:", name, email, password);
+  // };
+  const handleEmailSignUp = async (e: React.FormEvent) => {
+  e.preventDefault(); // prevent page reload
+
+  try {
+    const res = await fetch("http://localhost:5001/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      // Signup success
+      console.log("User signed up:", data);
+      alert("Signup successful!");
+      // Optionally, redirect user
+    } else {
+      // Backend returned error
+      console.error("Signup error:", data.message || data);
+      alert(`Error: ${data.message || "Signup failed"}`);
+    }
+  } catch (error) {
+    console.error("Network error:", error);
+    alert("Network error. Please try again.");
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -25,7 +58,7 @@ export default function SignUpPage() {
       <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4 bg-white border-b border-gray-200">
         <Link href="/">
           <h1 className="text-gray-900 text-xl sm:text-2xl font-bold cursor-pointer">
-            Stream Studio
+            Podcast Studio
           </h1>
         </Link>
 
@@ -242,7 +275,7 @@ export default function SignUpPage() {
 
           {/* Terms */}
           <p className="text-center text-gray-400 text-xs sm:text-sm mt-6 px-4">
-            By continuing, you agree to Stream Studio's{" "}
+            By continuing, you agree to Podcast Studio's{" "}
             <Link href="/terms" className="underline hover:text-gray-600">
               Terms of Service
             </Link>{" "}
