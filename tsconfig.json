@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/components/stream-provider.jsx", "src/hooks/use-stream-clients.js", "src/app/meeting/page.tsx", "src/app/meeting/[id]/page.jsx"  ],
   "exclude": ["node_modules"]
 }

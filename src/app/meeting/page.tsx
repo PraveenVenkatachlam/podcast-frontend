@@ -46,6 +46,28 @@ export default function MeetingPage() {
     </div>
   );
 }
+
+// "use client";
+// import React from "react";
+
+// const MeetingPage =()=>{
+//   return <div>meeting</div>
+// }
+// export default MeetingPage;
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 // "use client";
 
 // import React, { useState } from "react";

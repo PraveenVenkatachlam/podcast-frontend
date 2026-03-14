@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@stream-io/node-sdk": "^0.7.36",
-    "@stream-io/video-react-sdk": "^1.31.4",
+    "@stream-io/video-react-sdk": "^1.33.4",
     "next": "16.0.7",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "stream-chat": "^9.36.0",
+    "stream-chat-react": "^13.14.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
